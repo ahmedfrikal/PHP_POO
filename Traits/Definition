@@ -1,0 +1,53 @@
+Les trait est un  mécanisme permettant la réutilisation de methodes dasn plusiers classes
+
+les traits sont similaires aux classes masi il ne peuvent pas etre instanciées
+
+Resumer :les traits permettent donc de reutiliser du code dasn lusiers clasees sans nécessiter d'heritage multiple
+
+
+Exemple de code :
+// Définition d'un trait
+trait LogTrait {
+    public function log($message) {
+        echo '[' . date('Y-m-d H:i:s') . '] ' . $message . PHP_EOL;
+    }
+}
+
+// Utilisation du trait dans une classe
+class User {
+    use LogTrait;
+
+    public function __construct($name) {
+        $this->name = $name;
+    }
+
+    public function greet() {
+        $this->log('Bonjour, je m\'appelle ' . $this->name);
+    }
+}
+
+// Création d'une instance de la classe User
+$user = new User('John');
+$user->greet(); // Affiche quelque chose comme "[2024-02-24 15:30:00] Bonjour, je m'appelle John"
+
+
+trait Trait1 {
+    public function commonMethod() {
+        echo "Trait1 commonMethod\n";
+    }
+}
+
+trait Trait2 {
+    public function commonMethod() {
+        echo "Trait2 commonMethod\n";
+    }
+}
+
+class MyClass {
+    use Trait1, Trait2 {
+        Trait1::commonMethod insteadof Trait2; // Utilise la méthode commonMethod de Trait1
+        Trait2::commonMethod as secondCommonMethod; // Alias de la méthode commonMethod de Trait2
+    }
+}
+//Avec Trait1::commonMethod insteadof Trait2;,
+//nous spécifions que nous voulons utiliser la méthode commonMethod du Trait1 à la place de celle du Trait2.

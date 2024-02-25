@@ -1,0 +1,34 @@
+ # self fait toujours référence à la classe dans laquelle il est déclaré,
+ # static fait référence à la classe à partir de laquelle la méthode ou la propriété est effectivement appelée.
+
+ class A {
+     public static function foo() {
+         echo "Méthode de la classe " . self::class;
+     }
+ }
+
+ class B extends A {
+     public static function bar() {
+         echo "Méthode de la classe " . self::class;
+     }
+ }
+
+ A::foo(); // Affiche "Méthode de la classe A"
+ B::bar(); // Affiche "Méthode de la classe A"
+
+
+
+ class A {
+     public static function foo() {
+         echo "Méthode de la classe " . static::class;
+     }
+ }
+
+ class B extends A {
+     public static function bar() {
+         echo "Méthode de la classe " . static::class;
+     }
+ }
+
+ A::foo(); // Affiche "Méthode de la classe A"
+ B::bar(); // Affiche "Méthode de la classe B"

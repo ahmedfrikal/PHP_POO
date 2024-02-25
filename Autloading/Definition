@@ -1,0 +1,2 @@
+Autloading :
+charger automatiquement les classes faire importation au lieu d'utiliser les require_once
